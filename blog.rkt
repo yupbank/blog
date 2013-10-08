@@ -14,22 +14,16 @@
    [else blog-list-posts]))
 
 (define (blog-list-posts req)
-  (posts-list "blog" (xexpr->string `(body (h2 "My blog")
-                                           (a ([href "/posts/post-1"])
-                                              "post 1")
-                                           (br)
-                                           (a ([href "/posts/post-2"])
-                                              "post 2")
-                                           (br)
-                                           (a ([href "/posts/post-3"])
-                                              "post 3")))))
+  (posts-list "blog" "My blog" `(("posts/post-1" "post 1")
+                                 ("posts/post-2" "post 2")
+                                 ("posts/post-3" "post 3"))))
 
 (define (blog-review-post req blog-name)
   (response/xexpr
    `(html (head (title ,blog-name))
           (body (p ,blog-name)))))
 
-(define (posts-list title body)
+(define (posts-list title body-title elements)
   (response/xexpr
    (make-cdata #f #f (include-template "index.html"))))
 

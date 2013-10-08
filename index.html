@@ -10,7 +10,15 @@
 
 <body>
 
-@body
+<h2>@|body-title|</h2>
+
+<ul>
+    @for/list[([e elements])]{
+        @list{
+            <li><a href=@(car e)>@(cdr e)</a></li>
+        }
+    }
+</ul>
 
 </body>
 
