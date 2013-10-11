@@ -2,7 +2,8 @@
 (require web-server/servlet
          web-server/templates
          web-server/servlet-env
-         xml)
+         xml
+         "data.rkt")
 
 (define (blog-start req)
   (blog-dispatch req))
@@ -14,14 +15,13 @@
    [else blog-list-posts]))
 
 (define (blog-list-posts req)
-  (posts-list "blog" "My blog" `(("posts/post-1" "post 1")
-                                 ("posts/post-2" "post 2")
-                                 ("posts/post-3" "post 3"))))
+  (posts-list "blog" "My blog" (get-posts-title-and-url)))
 
-(define (blog-review-post req blog-name)
-  (response/xexpr
-   `(html (head (title ,blog-name))
-          (body (p ,blog-name)))))
+(define (blog-review-post req post-path)
+  (let-values ([(post-name post-content) (get-post-detail post-path)])
+    (response/xexpr
+     `(html (head (title ,post-name))
+            (body (p ,post-content))))))
 
 (define (posts-list title body-title elements)
   (response/xexpr
