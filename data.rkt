@@ -4,7 +4,8 @@
          get-post-detail)
 
 (define (get-posts-title-and-url)
-  (map build-post-url-and-name (all-posts-file-name)))
+  (filter (lambda (x) (not (null? x)))
+	  (map build-post-url-and-name (all-posts-file-name))))
 
 (define (get-post-detail post-path)
   (values post-path post-path))
@@ -17,12 +18,16 @@
 ; Split file-name.
 ; e.g. "2013-10-12-post-name.md" -> '("2013" "10" "12" "post-name")
 (define (split-post-file-name file-name)
-  (cdr (car
-	(regexp-match* #rx"([^-]*)-([^-]*)-([^-]*)-(.*)\\..*"
-		       file-name #:match-select values))))
+  (let ([match-result (regexp-match* #rx"([^-]*)-([^-]*)-([^-]*)-(.*)\\..*"
+				     file-name #:match-select values)])
+    (if (null? match-result)
+	'()
+	(cdr (car match-result)))))
 
 ; Build post url and name from post file name
 ; e.g. "2013-10-12-post-name.md" -> '("posts/2013/10/12/post-name" "post-name")
 (define (build-post-url-and-name file-name)
   (let ([splited-name (split-post-file-name file-name)])
-    (list (string-join (cons "posts" splited-name) "/") (cadddr splited-name))))
+    (if (null? splited-name)
+	'()
+	(list (string-join (cons "posts" splited-name) "/") (cadddr splited-name)))))
