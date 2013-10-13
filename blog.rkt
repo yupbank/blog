@@ -10,15 +10,14 @@
 
 (define-values (blog-dispatch blog-url)
   (dispatch-rules
-   [("") blog-list-posts]
    [("posts" (string-arg) (string-arg) (string-arg) (string-arg)) blog-review-post]
    [else blog-list-posts]))
 
 (define (blog-list-posts req)
   (posts-list "blog" "My blog" (get-posts-title-and-url)))
 
-(define (blog-review-post req year month day post-path)
-  (let-values ([(post-name post-content) (get-post-detail post-path)])
+(define (blog-review-post req year month day post-title)
+  (let-values ([(post-name post-content) (get-post-detail year month day post-title)])
     (response/xexpr
      `(html (head (title ,post-name))
             (body (p ,post-content))))))
@@ -27,6 +26,7 @@
   (response/xexpr
    (make-cdata #f #f (include-template "index.html"))))
 
+(load-posts)
 (serve/servlet blog-start
                #:file-not-found-responder blog-dispatch
                #:servlet-path "/"
