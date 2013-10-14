@@ -20,7 +20,7 @@
   (let-values ([(post-name post-content) (get-post-detail year month day post-title)])
     (response/xexpr
      `(html (head (title ,post-name))
-            (body (p ,post-content))))))
+            (body (p ,@post-content))))))
 
 (define (posts-list title body-title elements)
   (response/xexpr
