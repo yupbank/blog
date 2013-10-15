@@ -12,7 +12,8 @@
                                (take url-name-content 2)) posts)]
          [contents (map (lambda (url-name-content)
                           (add-post-content (car url-name-content)
-                                            (caddr url-name-content))) posts)])
+                                            (map xexpr->string
+                                                 (caddr url-name-content)))) posts)])
     (set! post-list url-name-list)))
 
 (define (get-posts-title-and-url) post-list)

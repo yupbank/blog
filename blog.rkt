@@ -17,10 +17,9 @@
   (posts-list "blog" "My blog" (get-posts-title-and-url)))
 
 (define (blog-review-post req year month day post-title)
-  (let-values ([(post-name post-content) (get-post-detail year month day post-title)])
+  (let-values ([(title content) (get-post-detail year month day post-title)])
     (response/xexpr
-     `(html (head (title ,post-name))
-            (body (p ,@post-content))))))
+     (make-cdata #f #f (include-template "post.html")))))
 
 (define (posts-list title body-title elements)
   (response/xexpr
