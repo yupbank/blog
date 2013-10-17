@@ -25,10 +25,16 @@
   (response/xexpr
    (make-cdata #f #f (include-template "index.html"))))
 
+(let ([args (vector->list (current-command-line-arguments))])
+  (when (not (null? args))
+        (current-directory (path->complete-path (car args)))))
+
 (load-posts)
 (serve/servlet blog-start
+               #:command-line? #t
                #:file-not-found-responder blog-dispatch
                #:servlet-path "/"
                #:servlets-root (current-directory)
                #:server-root-path (current-directory)
-               #:extra-files-paths (list (current-directory)))
+               #:extra-files-paths (list (current-directory))
+               #:log-file "log.txt")
