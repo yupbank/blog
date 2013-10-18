@@ -14,7 +14,7 @@
    [else blog-list-posts]))
 
 (define (blog-list-posts req)
-  (posts-list "blog" "My blog" (get-posts-title-and-url)))
+  (posts-list "blog" "My blog" (get-posts-url-and-title)))
 
 (define (blog-review-post req year month day post-title)
   (let-values ([(title content) (get-post-detail year month day post-title)])
@@ -29,7 +29,6 @@
   (when (not (null? args))
         (current-directory (path->complete-path (car args)))))
 
-(load-posts)
 (serve/servlet blog-start
                #:command-line? #t
                #:file-not-found-responder blog-dispatch
