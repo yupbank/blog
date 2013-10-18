@@ -14,14 +14,14 @@
    [else blog-list-posts]))
 
 (define (blog-list-posts req)
-  (posts-list "blog" "My blog" (get-posts-url-and-title)))
+  (posts-list (get-posts-url-and-title)))
 
 (define (blog-review-post req year month day post-title)
   (let-values ([(title content) (get-post-detail year month day post-title)])
     (response/xexpr
      (make-cdata #f #f (include-template "post.html")))))
 
-(define (posts-list title body-title elements)
+(define (posts-list elements)
   (response/xexpr
    (make-cdata #f #f (include-template "index.html"))))
 
