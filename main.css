@@ -1,5 +1,5 @@
 body {
-    font-family: serif;
+    font-family: "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, serif;
     font-size: 18px;
     margin: 5% 20% 5% 20%;
     padding: 2% 5% 5% 5%;
@@ -7,6 +7,29 @@ body {
     line-height: 150%;
 }
 
+h1 {
+    color: Gray;
+}
+
+h2 {
+    font-family: STKaiti, "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    margin-bottom: 50px;
+    padding: 5px;
+    padding-left: 15px;
+    border-bottom: 2px LightGray solid;
+    line-height: 150%;
+    color: CornflowerBlue;
+}
+
 ul {
     list-style-type: none;
+}
+
+li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+a {
+    color: DimGray;
 }
