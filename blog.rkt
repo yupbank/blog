@@ -35,5 +35,4 @@
                #:servlet-path "/"
                #:servlets-root (current-directory)
                #:server-root-path (current-directory)
-               #:extra-files-paths (list (current-directory))
-               #:log-file "log.txt")
+               #:extra-files-paths (list (current-directory)))
