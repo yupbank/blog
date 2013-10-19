@@ -26,7 +26,7 @@
 ;; Split file-name.
 ;; e.g. "2013-10-12-post-name.md" -> '("2013" "10" "12" "post-name")
 (define (split-post-file-name file-name)
-  (let ([match-result (regexp-match* #rx"([^-]*)-([^-]*)-([^-]*)-(.*)\\.md"
+  (let ([match-result (regexp-match* #rx"^([^-]*)-([^-]*)-([^-]*)-(.*)\\.md$"
                                      file-name #:match-select values)])
     (if (null? match-result)
         '()
