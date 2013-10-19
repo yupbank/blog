@@ -33,3 +33,28 @@ li {
 a {
     color: DimGray;
 }
+
+pre {
+    font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+    font-size: 70%;
+    border: 1px solid LightGray;
+    border-radius: 5px;
+    background-color: WhiteSmoke;
+    padding: 10px;
+    margin-left: 10px;
+    width: 95%;
+}
+
+code {
+    font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+    font-size: 75%;
+    border: 1px solid LightGray;
+    border-radius: 3px;
+    background-color: WhiteSmoke;
+    padding: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin: 1px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
