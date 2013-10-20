@@ -19,9 +19,9 @@
 ;; List all posts name in directory post-dir
 (define (all-posts-file-name)
   (let ([posts-dir (build-path (current-directory) post-dir)])
-    (map path->string (with-handlers ([exn:fail:filesystem?
-                                       (lambda (exn) '())])
-                                     (directory-list posts-dir)))))
+    (reverse (map path->string (with-handlers ([exn:fail:filesystem?
+                                                (lambda (exn) '())])
+                                              (directory-list posts-dir))))))
 
 ;; Split file-name.
 ;; e.g. "2013-10-12-post-name.md" -> '("2013" "10" "12" "post-name")
