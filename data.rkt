@@ -38,7 +38,7 @@
   (let ([splited-name (split-post-file-name file-name)])
     (if (null? splited-name)
         '()
-        (list (string-join (cons post-dir splited-name) "/")
+        (list (string-join (cons (string-append "/" post-dir) splited-name) "/")
               (cadddr splited-name)))))
 
 ;; Read markdown file content and convert to list of xexpr
