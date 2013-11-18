@@ -18,13 +18,13 @@
 <a href="/about.html"><font color="CornflowerBlue">ABOUT</font></a>
 <hr>
 
-<ul>
+<table>
     @for/list[([e elements])]{
         @list{
-            <li><a href=@(car e)>@(cdr e)</a></li>
+            <tr><td><a href=@(car e)>@(cddr e)</a></td><td>@(cadr e)</td></tr>
         }
     }
-</ul>
+</table>
 
 </body>
 

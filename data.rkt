@@ -1,17 +1,18 @@
 #lang racket
 (require xml markdown)
 
-(provide get-posts-url-and-title
+(provide get-posts-info
          get-post-detail)
 
-(define (get-posts-url-and-title)
+(define (get-posts-info)
   (let ([posts (filter (lambda (x) (not (null? x)))
-                       (map build-post-url-name (all-posts-file-name)))])
+                       (map build-post-info (all-posts-file-name)))])
     posts))
 
 (define (get-post-detail year month day title)
   (let ([file-name (string-append (string-join (list year month day title) "-") ".md")])
-    (values title (map xexpr->string (read-markdown-content file-name)))))
+    (values title (string-join (list year month day) "-")
+            (map xexpr->string (read-markdown-content file-name)))))
 
 ;; Define post directory
 (define post-dir "posts")
@@ -34,13 +35,15 @@
         '()
         (cdr (car match-result)))))
 
-;; Build post url, post name from post file name
-;; e.g. "2013-10-12-post-name.md" -> '("posts/2013/10/12/post-name" "post-name")
-(define (build-post-url-name file-name)
+;; Build post url, post time, post name from post file name
+;; e.g. "2013-10-12-post-name.md" ->
+;;      '("posts/2013/10/12/post-name" "2013-10-12" "post-name")
+(define (build-post-info file-name)
   (let ([splited-name (split-post-file-name file-name)])
     (if (null? splited-name)
         '()
         (list (string-join (cons (string-append "/" post-dir) splited-name) "/")
+              (string-join (take splited-name 3) "-")
               (cadddr splited-name)))))
 
 ;; Read markdown file content and convert to list of xexpr

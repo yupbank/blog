@@ -1,9 +1,9 @@
 body {
     font-family: "SimSun", "Palatino Linotype", "Book Antiqua", Palatino, Verdana, serif;
     font-size: 18px;
-    margin: 5% 20% 5% 20%;
-    padding: 2% 5% 5% 5%;
-    width: 50%;
+    margin: 1% 15% 5% 15%;
+    padding: 0% 5% 5% 5%;
+    width: 60%;
     line-height: 150%;
 }
 
@@ -27,6 +27,18 @@ ul {
 }
 
 li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+table {
+    margin-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 80%
+}
+
+td {
     padding-top: 5px;
     padding-bottom: 5px;
 }
