@@ -73,6 +73,19 @@ code {
     margin-right: 3px;
 }
 
+pre code {
+    font-size: 100%;
+    border: none;
+    border-radius: 0px;
+    background-color: WhiteSmoke;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 img {
     display: block;
     margin-left: auto;
