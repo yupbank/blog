@@ -17,13 +17,13 @@
   (posts-list (get-posts-info)))
 
 (define (blog-review-post req year month day post-title)
-  (let-values ([(title time content) (get-post-detail year month day post-title)])
+  (let-values ([(title time content head) (get-post-detail year month day post-title)])
     (response/xexpr
      (make-cdata #f #f (include-template "post.html")))))
 
 (define (posts-list elements)
   (response/xexpr
-   (make-cdata #f #f (include-template "index.html"))))
+   (make-cdata #f #f  (cons (include-template "head.html") (include-template "index.html")))))
 
 (let ([args (vector->list (current-command-line-arguments))])
   (when (not (null? args))
@@ -31,7 +31,7 @@
 
 (serve/servlet blog-start
                #:listen-ip "0.0.0.0"
-               #:port 80
+               #:port 8080
                #:command-line? #t
                #:file-not-found-responder blog-dispatch
                #:servlet-path "/"
