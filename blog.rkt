@@ -31,7 +31,7 @@
 
 (serve/servlet blog-start
                #:listen-ip "0.0.0.0"
-               #:port 80
+               #:port 8080
                #:command-line? #t
                #:file-not-found-responder blog-dispatch
                #:servlet-path "/"
