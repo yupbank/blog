@@ -1,6 +1,5 @@
 ## Matrix Factorization in recommendation
 
-## Recent studies in this area.
 
 I am really confused about matrix factorization. 
 As many turtotial explain the key idea about how this model works. And what kind of tricks inside factotization.
@@ -11,9 +10,11 @@ It's already been proved that matrix factorization is the best single model in p
 Since my cretiria about understanding is being able to implement. Clearly, just key idea can not fulfill my needs.
 
 So I have prepared my own study upon these models: SVD?, SVD++, SVD Feature and Factorization Machine. I am going to show you what's the same and different in between those models.
-First of all, the model equations of above models are being listed:
 
-###1),  SVD: 
+
+###First of all, the model equations of above models are being listed:
+
+####1),  SVD: 
 
 $$$R = U * \sigma * I $$$ or $$$ U*I $$$?
 
@@ -37,25 +38,28 @@ $$ \hat{R} = bias + U*I $$
 
 And the objective function are still the same.
 
-###2), SVD++:
+####2), SVD++:
 
 $$ \hat{R} =  Bias + (U+|feedback(U)|^{-1/2} \sum_{i \in feedback(u)} y_i)*I $$
 
-###3), SVD feature:
+####3), SVD feature:
 
 $$ \hat{R} = bias+(\sum_{g \in G} {\gamma_g bias_g}+ \sum\_{m \in M} {\alpha_m bias_m}+ \sum\_{n \in N} {\beta_n bias_n} ) \
 +(\sum\_{m \in M} {\alpha_m U_m})^T * (\sum\_{n \in N} {\beta_n I_n})
 $$
 
-###4), Factorization machine:
+####4), Factorization machine:
 
 $$\hat{R} = w_0 + \sum_{j=1}^{P} {w_j x_j}+\
 1/2*\sum\_{f=1}^{K} [(\sum\_{j=1}^{P} {v\_{j,f} x_j})^2-\sum\_{j=1}{P} {v\_{jf}^2 x\_j^2}] $$
 
 
-Second thing i care is input. 
+###The second thing i care is input. 
 
-How is input gonna perform different? As it always be the instance? 
+How is input gonna perform different? Is it always are the instances? 
+I think the most important thing is that is features involved. Apperantly, from the equation, we can tell the SVD model has no room for extra features.
+While, SVD++, SVD feature and Factorization machine can employ both explicit and implicit features.
+Thus, implicit.
 
 
 
