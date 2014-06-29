@@ -14,7 +14,7 @@ So I have prepared my own study upon these models: SVD?, SVD++, SVD Feature and 
 
 ###First of all, the model equations of above models are being listed:
 
-####1),  SVD: 
+####1),  SVD or NMF: 
 
 $$$R = U * \sigma * I $$$ or $$$ U*I $$$?
 
